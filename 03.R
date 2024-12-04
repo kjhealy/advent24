@@ -1,3 +1,4 @@
+## Day 3
 library(tidyverse)
 
 raw <- read_lines("data/03.txt") |> paste(collapse = " ")
@@ -29,3 +30,4 @@ str_replace_all(raw, "do\\(\\)", "\ndo()") |>
          r = as.numeric(str_remove_all(r, "\\)")), 
          result = l*r) |> 
   summarize(total = sum(result))
+
