@@ -14,7 +14,8 @@ all_pages <- raw[str_detect(raw, ",")] |>
 
 ## The tedious bit
 valid_update <- function(page_vec, all_rules = all_rules) {
-  rules_to_apply <- all_rules[all_rules$before %in% page_vec & all_rules$after %in% page_vec,] 
+  ind <- all_rules$before %in% page_vec & all_rules$after %in% page_vec
+  rules_to_apply <- all_rules[ind,] 
   rule_tester <- rules_to_apply |> 
     pull(value) |> str_replace("\\|", ".*")
   all(str_detect(paste(page_vec,collapse="."), rule_tester))
@@ -37,7 +38,8 @@ all_pages[is_valid] |>
 
 # Part 2
 which_rules_violated <- function(page_vec, rule_table = all_rules) {
-  rules_to_apply <- all_rules[rule_table$before %in% page_vec & rule_table$after %in% page_vec,] 
+  ind <- rule_table$before %in% page_vec & rule_table$after %in% page_vec
+  rules_to_apply <- all_rules[ind,] 
   rule_tester <- rules_to_apply |> 
     pull(value) |> str_replace("\\|", ".*")
   red_flag <- !str_detect(paste(page_vec,collapse="."), rule_tester)
@@ -53,7 +55,8 @@ repair_sequence <- function(page_vec, rule_table = all_rules, ...) {
   # Base case
   if(is.null(rules_violated)) return(page_vec)
   
-  o <- match(c(rules_violated[1, "before"], rules_violated[1, "after"]), page_vec)
+  o <- match(c(rules_violated[1, "before"], 
+               rules_violated[1, "after"]), page_vec)
   rev_o <- rev(o)
   page_vec[o] <- page_vec[rev_o]
   repair_sequence(page_vec)
