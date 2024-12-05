@@ -2,7 +2,6 @@ library(tidyverse)
 
 raw <- read_lines("data/05.txt")
 
-# Part 1
 all_rules <- raw[str_detect(raw, "\\|")] |> 
   as_tibble() |>
   separate(value, into = c("before", "after"), 
@@ -12,6 +11,7 @@ all_pages <- raw[str_detect(raw, ",")] |>
   as.list() |> 
   map(str_split_1, ",") 
 
+# Part 1
 ## The tedious bit
 valid_update <- function(page_vec, all_rules = all_rules) {
   ind <- all_rules$before %in% page_vec & all_rules$after %in% page_vec
