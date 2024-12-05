@@ -61,6 +61,7 @@ repair_sequence <- function(page_vec, rule_table = all_rules, ...) {
   repair_sequence(page_vec)
 }
 
+# Do it
 all_pages[!is_valid] |> 
   map(repair_sequence) |> 
   map(get_mid) |> 
