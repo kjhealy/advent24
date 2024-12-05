@@ -1,6 +1,6 @@
 library(tidyverse)
 
-raw <- read_lines("data/05_test.txt")
+raw <- read_lines("data/05.txt")
 
 # Part 1
 all_rules <- raw[str_detect(raw, "\\|")] |> 
