@@ -21,7 +21,7 @@ valid_update <- function(page_vec, all_rules = all_rules) {
 }
 
 get_mid <- function(x) {
-  # Assumes they're all odd
+  # Assumes they're all odd (which they are in this problem)
   x[(length(x) + 1) / 2]
 }
 
@@ -34,8 +34,6 @@ all_pages[is_valid] |>
   map(get_mid) |> 
   as.numeric() |> 
   sum()
-  
-
 
 # Part 2
 which_rules_violated <- function(page_vec, rule_table = all_rules) {
