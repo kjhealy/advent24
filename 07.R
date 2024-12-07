@@ -26,8 +26,9 @@ equations <- raw |>
 n_operations <- map_int(equations, length) - 1
 
 ## Part 1 and Part 2
-# Fuck it we're just going to brute force it; I have 16 cores and recursion 
-# is above my recursion pay grade
+# Fuck it we're just going to brute force it; 
+# I have 16 cores I paid good money for and recursion 
+# is above my recursion pay grade.
 
 pt1_operators <- c("*", "+")
 pt2_operators <- c("*", "+", "#")
