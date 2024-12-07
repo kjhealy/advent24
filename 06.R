@@ -1,4 +1,4 @@
-raw <- scan("data/06.txt", what = character()) 
+raw <- scan("data/06_test.txt", what = character()) 
 maze <- matrix(unlist(strsplit(raw,"")),
        nrow = length(raw), byrow = T)
 
@@ -51,7 +51,7 @@ visited[[length(visited) + 1]]  <- paste(next_location, collapse = ",")
 length(unique(visited))
 
 ## Part 2
-
+tictoc::tic()
 # Reset location
 location <- which(maze == "^", arr.ind = T) |>
   as.vector()
@@ -110,6 +110,6 @@ for(i in seq_along(base_path)[-1]){
 # about which positions produce paths that loop
 unique(base_path[-1][result]) |>
   length()
-
+tictoc::toc()
 
 ## Having finished this I see it could be parallelized on the list. Turn the for loop into a function and parcel it out.
